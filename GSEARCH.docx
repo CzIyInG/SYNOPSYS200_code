@@ -1,0 +1,91 @@
+1.获得镜头设计档1.RLE
+2.准备优化宏   1.MAC
+如
+PANT
+VLIST RAD 1 2 3 4 5
+VLIST TH 1 2 3 4 5
+END
+AANT
+ACC 25.4 1
+AEC 5 1
+GSR .75 1 4 1 0 0
+GSR .75 1 4 2 0 0
+GSR .75 1 4 3 0 0
+GNR .75 1 3 1 .75 0
+GNR .75 1 3 1 1.0 0
+GNR .75 1 3 2 .75 0
+GNR .75 1 3 2 1.0 0
+GNR .75 1 3 3 .75 0
+GNR .75 1 3 3 1.0 0
+END
+SNAP
+SYNO 25 0 FIX 5
+SYNOPSYS 20
+
+### 以上均为常规透镜设置和优化，主要是提供一个参考例子 ###
+### 下面为GSEARCH代码，根据需要进行调整 ###
+
+
+3.GSEARCH 
+(1)指定材料型优化
+CORE 12                   ！调用12个核心，根据自己电脑决定
+GSEARCH 5 QUIET           ！不用调整
+SURF
+1 3 5                     ！优化的表面选择
+END
+OFILE "1.MAC"             ！调用先前保存的1.MAC优化宏
+NAMES                     ！以下是指定的几种材料，前面的S、G、O、U等是玻璃库标识
+S BK7
+S F2
+G G-F2
+O PBH6
+U CAFL
+END
+GO
+  
+(2)指定材料库类型优化
+CORE 12
+GSEARCH 5  QUIET
+SURF
+1 3 5
+END
+OFILE "1.MAC"
+NEAREST 5 P               ！以下S、O、H是指定的不同材料库
+S
+O
+H
+END
+GO
+
+
+(3)指定每个面不同的材料库
+CORE     12
+GSEARCH 5  QUIET
+SURF   
+1 3 5          ！需要优化的表面，第1，3，5表面材料要优化
+END
+SUBSET
+1  S           ！给第一个面指定S （Schott材料库）
+3  O           ！第三个面指定O（Ohara材料库）
+5  H           ！第5个面指定H（Hoya材料库）
+END
+OFILE "1.MAC"
+NEAREST 5 P
+S
+O
+H
+END
+GO
+
+
+
+
+
+
+
+
+
+
+
+
+
