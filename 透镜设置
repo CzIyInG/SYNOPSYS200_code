@@ -1,0 +1,9 @@
+### 这是最简单的一个透镜设置模板 ###
+RLE
+ID EXAMPLE SINGLET   
+OBB 0 5 12.7                   ### 也可以选择OBA
+UNI MM
+1 RD 100 TH 5 GTB S 'N-BK7'    ### GTB S 'N-BK7' 为玻璃材料选择，根据题目选择
+2 RD -100 YMT                  ### YMT为厚度求解函数，一般设定在后边的面上
+3                              ### 3不写也没事
+END
