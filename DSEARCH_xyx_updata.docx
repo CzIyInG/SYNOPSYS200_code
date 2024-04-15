@@ -1,1 +1,30 @@
+### 以下为相对简洁版本，基本可以直接使用，更多复杂参数后续学明白了一一补充
 
+CORE 16                     ## 核心选择
+DSEARCH 1 QUIET            
+SYSTEM
+ID HELLO WORLD
+OBB 0 1 1                   ## 无限远轴外点，
+WAVL .6563 .5873 .4861      ## 根据赛题需要填写，单位微米
+UNITS INCH 
+END
+
+GOALS
+ELEMENTS 8 5                ## 八个镜头且五个正镜头
+FNUM 5                      ## FNO.
+BACK 0 SET                  ## 加了SET则跳过后焦，若要设置0则设置一个非常小的数即可，不加SET直接加数字即调整光学后焦值
+TOTL 0 0                    ## 第一个数为光学总长，第二个为权重
+STOP MIDDLE                 ## 光阑位置[FIRST/MIDDLE/LAST/TELECENTRIC],TELECENTRIC表示入瞳将在无穷远处，所有传入的主光线将与光轴平行
+STOP FREE                   ## 光阑是否移动[默认就是自由的FREE]
+QUICK 10 10
+NPASS 10                    ## 在优化过程中要进行的次数。所有周期所需的时间，包括优化和模拟退火，都可以很容易地得到。过少的次数会产生较差的镜头，而过多的则过长。默认值25
+ANNEAL 200 20 Q             ## 开始温度、冷却速度[开始温度100-200，冷却速度10-20，冷却速度慢一点更好]
+SNAPSHOT 10                 ## PAD更新频   
+PLASTIC 1 3 5 7             ## 设置为塑料
+
+SPECIAL PANT
+END
+SPECIAL AANT
+END
+
+GO
